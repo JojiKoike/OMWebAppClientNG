@@ -1,0 +1,101 @@
+<div class="container" [formGroup]="input_form_group">
+  <div formGroupName="options">
+    <p-accordion>
+      <p-accordionTab header="計算オプション" [selected]="true">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">計算開始時刻</span>
+              <input id="startTime" type="number"
+              formControlName="start_time"
+              value="{{ default_options.startTime | float_format: 1}}"
+              pInputText>
+              <span class="ui-inputgroup-addon">s</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+            class="alert alert-danger">
+          <div *ngIf="input_form_group.get('options').get('start_time').errors?.required">
+              計算開始時刻は必須です。
+          </div>
+          <div *ngIf="input_form_group.get('options').get('start_time').errors?.min">
+              計算開始時刻は0より大きい値を入力してください。
+          </div>
+          <div *ngIf="input_form_group.get('options').errors?.validateStopTimeAfterStartTimeError">
+              計算開始時刻は計算終了時刻より前の時刻に設定してください。
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">計算終了時刻</span>
+              <input id="stopTime" type="number"
+              formControlName="stop_time"
+              value="{{ default_options.stopTime | float_format: 1}}"
+              pInputText>
+              <span class="ui-inputgroup-addon">s</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+            class="alert alert-danger">
+          <div *ngIf="input_form_group.get('options').get('stop_time').errors?.required">
+              計算終了時刻は必須です。
+          </div>
+          <div *ngIf="input_form_group.get('options').get('stop_time').errors?.validateInputOverZeroError">
+              計算終了時刻は0より大きい値を入力してください。
+          </div>
+          <div *ngIf="input_form_group.get('options').errors?.validateStopTimeAfterStartTimeError">
+              計算終了時刻は計算開始時刻より後の時刻に設定してください。
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">ステップサイズ</span>
+              <input id="stepSize" type="number"
+              formControlName="step_size"
+              value="{{ default_options.stepSize | float_format: 3}}"
+              pInputText>
+              <span class="ui-inputgroup-addon">s</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+            class="alert alert-danger">
+          <div *ngIf="input_form_group.get('options').get('step_size').errors?.required">
+              ステップサイズは必須です。
+          </div>
+          <div *ngIf="input_form_group.get('options').get('step_size').errors?.validateInputOverZeroError">
+              ステップサイズは0より大きい値を入力してください。
+          </div>
+          <div *ngIf="input_form_group.get('options').errors?.validateNumOfPlotsPerLineError">
+              時分割は500以内に設定してください。
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">精度</span>
+              <p-dropdown [options]="select_options.tolerance"
+              formControlName="tolerance">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">ソルバー</span>
+              <p-dropdown [options]="select_options.solver"
+              formControlName="solver">
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>

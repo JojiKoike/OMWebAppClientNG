@@ -1,0 +1,55 @@
+<div class="container" [formGroup]="input_form_group">
+  <div formGroupName="params">
+    <p-accordion>
+      <p-accordionTab header="パラメータ入力" [selected]="true">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">質量</span>
+              <input id="mass" type="number"
+              formControlName="mass"
+              placeholder="{{default_params.m}}" pInputText>
+              <span class="ui-inputgroup-addon">kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">ばね定数</span>
+              <input id="springCoefficient"
+              placeholder="{{default_params.k}}"
+              formControlName="spring_constant" type="number" pInputText>
+              <span class="ui-inputgroup-addon">N/m</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">減衰係数</span>
+              <input id="dumpingCoefficient"
+              placeholder="{{default_params.c}}"
+              formControlName="damping_coefficient" type="number" pInputText>
+              <span class="ui-inputgroup-addon">N・s/m</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">初速度</span>
+              <input id="initialVelocity"
+              placeholder="{{default_params.v0}}"
+              formControlName="initial_velocity" type="number" pInputText>
+              <span class="ui-inputgroup-addon">m/s</span>
+            </div>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+ </div>

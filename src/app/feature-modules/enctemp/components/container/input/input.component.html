@@ -1,0 +1,22 @@
+<div class="input-container">
+  <form [formGroup]="inputFormGroup">
+    <div class="input-params">
+      <app-params
+      [input_form_group]="inputFormGroup"
+      [default_params]="default_params$ | async"></app-params>
+    </div>
+    <div class="input-options">
+      <app-options
+      [input_form_group]="inputFormGroup"
+      [default_options]="default_options$ | async"
+      [select_options]="select_options$ | async"></app-options>
+    </div>
+    <div class="input-controlls">
+      <app-controlls
+      [input_form_group]="inputFormGroup"
+      [loading]="loading$ | async"
+      (reset_inputs)="resetInputs()"
+      (simulation_started)="runSimulation()"></app-controlls>
+    </div>
+  </form>
+</div>

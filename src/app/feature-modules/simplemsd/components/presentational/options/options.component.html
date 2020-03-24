@@ -1,0 +1,43 @@
+<div class="container" [formGroup]="input_form_group">
+  <div formGroupName="options">
+    <p-accordion>
+      <p-accordionTab header="オプション入力" [selected]="true">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">計算開始時刻</span>
+              <input id="startTime" type="number"
+              formControlName="start_time"
+              placeholder="{{default_options.startTime}}" pInputText>
+              <span class="ui-inputgroup-addon">s</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">計算終了時刻</span>
+              <input id="endTime" type="number"
+              formControlName="stop_time"
+              placeholder="{{default_options.stopTime}}" pInputText>
+              <span class="ui-inputgroup-addon">s</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon">ステップサイズ</span>
+              <input id="stepSize" type="number"
+              formControlName="step_size"
+              placeholder="{{default_options.stepSize}}" pInputText>
+              <span class="ui-inputgroup-addon">s</span>
+            </div>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>

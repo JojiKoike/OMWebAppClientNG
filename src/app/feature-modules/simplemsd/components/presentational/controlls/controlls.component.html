@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="p-grid p-justify-center">
+    <div class="p-col-4">
+      <button pButton type="button" (click)="resetInputs()"
+      label="リセット" class="ui-button-raised"></button>
+    </div>
+    <div class="p-col-3">
+      <button pButton type="button" (click)="runSimulation()"
+      label="計算" class="ui-button-raised ui-button-success"
+      [disabled]="!input_form_group.valid"></button>
+    </div>
+  </div>
+</div>

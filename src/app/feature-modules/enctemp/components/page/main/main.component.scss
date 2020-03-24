@@ -1,0 +1,28 @@
+@import 'common';
+
+#container {
+  width: $main-container-width;
+  position: relative;
+  height: auto !important;
+  height: $main-container-height;
+  min-height: $main-container-height-min;
+}
+
+#header {
+  width: $header-width-max;
+}
+
+#body {
+  width: $body-width-max;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+#footer {
+  position: fixed;
+  bottom: $footer-position-bottom;
+  margin-top: $footer-margin-top;
+  width: $footer-width-max;
+}

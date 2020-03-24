@@ -1,0 +1,436 @@
+<div class="container" [formGroup]="input_form_group">
+  <div formGroupName="params">
+      <p-accordion>
+        <div formGroupName="outer">
+          <p-accordionTab header="周囲条件" [selected]="true">
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">外気温度</span>
+                  <input id="t_fixed" type="number"
+                  formControlName="t_fixed"
+                  value="{{ default_params.T_fixed | kelvin2celsius | float_format : 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">℃</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('outer').get('t_fixed').errors?.required">
+                  外気温度は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('outer').get('t_fixed').errors?.validateInputTemperatureGEZeroKelvinError">
+                  外気温度は-273.15℃以上に設定してください。
+                </div>
+            </div>
+
+         </p-accordionTab>
+        </div>
+        <div formGroupName="unit">
+          <p-accordionTab header="ユニット" [selected]="true">
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">初期温度</span>
+                  <input id="t_st_unit" type="number"
+                  formControlName="t_st"
+                  value="{{ default_params.T_st_unit | kelvin2celsius | float_format : 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">℃</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('t_st').errors?.required">
+                  初期温度は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('t_st').errors?.validateInputTemperatureGEZeroKelvinError">
+                  初期温度は-273.15℃以上に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">高さ</span>
+                  <input id="height_unit" type="number"
+                  formControlName="height"
+                  value="{{ default_params.height_unit | meter2millimeter | float_format : 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('height').errors?.required">
+                  ユニット高さは必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('height').errors?.validateInputOverZeroError">
+                  ユニット高さは0より大きな値に設定してください。
+                </div>
+                <div *ngIf="input_form_group.get('params').errors?.validateEncLargerUnitHeightError">
+                  ユニット高さが筐体高さ以上に設定されています。
+                </div>
+            </div>
+
+           <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">幅</span>
+                  <input id="width_unit" type="number"
+                  formControlName="width"
+                  value="{{ default_params.width_unit | meter2millimeter | float_format : 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('width').errors?.required">
+                  ユニット幅は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('width').errors?.validateInputOverZeroError">
+                  ユニット幅は0より大きな値に設定してください。
+                </div>
+                <div *ngIf="input_form_group.get('params').errors?.validateEncLargerUnitWidthError">
+                  ユニット幅が筐体幅以上に設定されています。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">奥行き</span>
+                  <input id="depth_unit" type="number"
+                  formControlName="depth"
+                  value="{{ default_params.depth_unit | meter2millimeter | float_format : 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('depth').errors?.required">
+                  ユニット奥行きは必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('depth').errors?.validateInputOverZeroError">
+                  ユニット奥行きは0より大きな値に設定してください。
+                </div>
+                <div *ngIf="input_form_group.get('params').errors?.validateEncLargerUnitDepthError">
+                  ユニット奥行きが筐体奥行き以上に設定されています。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">比熱</span>
+                  <input id="cp_unit" type="number"
+                  formControlName="cp"
+                  value="{{ default_params.cp_unit | float_format : 1 }}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">J/kg・℃</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('cp').errors?.required">
+                  比熱は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('cp').errors?.validateInputOverZeroError">
+                  比熱は0より大きな値に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">放射率</span>
+                  <input id="e_unit" type="number"
+                  formControlName="e"
+                  value="{{ default_params.e_unit | float_format : 2}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon"> </span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('e').errors?.required">
+                  放射率は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('e').errors?.validateInputRatioError">
+                  放射率は0以上1以下に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">発熱量</span>
+                  <input id="power" type="number"
+                  formControlName="power"
+                  value="{{default_params.power_unit | float_format : 2}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">W</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('unit').get('power').errors?.required">
+                  ユニット発熱量は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('unit').get('power').errors?.validateInputOverZeroError">
+                  ユニット発熱量は0より大きな値に設定してください。
+                </div>
+            </div>
+          </p-accordionTab>
+        </div>
+
+        <div formGroupName="enc">
+         <p-accordionTab header="筐体" [selected]="true">
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">筐体内空気初期温度</span>
+                  <input id="t_st_enc" type="number"
+                  formControlName="t_st"
+                  value="{{ default_params.T_st_enc | kelvin2celsius | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">℃</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('t_st').errors?.required">
+                  筐体内空気初期温度は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('t_st').errors?.validateInputTemperatureGEZeroKelvinError">
+                  筐体内空気初期温度は-273.15℃以上に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">高さ</span>
+                  <input id="height_enc" type="number"
+                  formControlName="height"
+                  value="{{ default_params.height_enc | meter2millimeter | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('height').errors?.required">
+                  筐体高さは必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('height').errors?.validateInputOverZeroError">
+                  筐体高さは0より大きな値に設定してください。
+                </div>
+                <div *ngIf="input_form_group.get('params').errors?.validateEncLargerUnitHeightError">
+                  筐体高さがユニット高さ以下に設定されています。
+                </div>
+            </div>
+
+
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">幅</span>
+                  <input id="width_enc" type="number"
+                  formControlName="width"
+                  value="{{ default_params.width_enc | meter2millimeter | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('width').errors?.required">
+                  筐体幅は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('width').errors?.validateInputOverZeroError">
+                  筐体幅は0より大きな値に設定してください。
+                </div>
+                <div *ngIf="input_form_group.get('params').errors?.validateEncLargerUnitWidthError">
+                  筐体幅がユニット幅以下に設定されています。
+                </div>
+            </div>
+
+
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">奥行き</span>
+                  <input id="depth_enc" type="number"
+                  formControlName="depth"
+                  value="{{ default_params.depth_enc | meter2millimeter | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('depth').errors?.required">
+                  筐体奥行きは必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('depth').errors?.validateInputOverZeroError">
+                  筐体奥行きは0より大きな値に設定してください。
+                </div>
+                <div *ngIf="input_form_group.get('params').errors?.validateEncLargerUnitDepthError">
+                  筐体奥行きが筐体高さ以上に設定されています。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">厚さ</span>
+                  <input id="thickness" type="number"
+                  formControlName="thickness"
+                  value="{{default_params.thickness_enc | meter2millimeter | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">mm</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('thickness').errors?.required">
+                  厚さは必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('thickness').errors?.validateInputOverZeroError">
+                  厚さは0より大きな値に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">密度</span>
+                  <input id="ro_enc" type="number"
+                  formControlName="ro"
+                  value="{{default_params.ro_enc | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">kg/㎥</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('ro').errors?.required">
+                  密度は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('ro').errors?.validateInputOverZeroError">
+                  密度は0より大きな値に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">比熱</span>
+                  <input id="cp_enc" type="number"
+                  formControlName="cp"
+                  value="{{default_params.cp_enc | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">J/kg・℃</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('cp').errors?.required">
+                  比熱は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('cp').errors?.validateInputOverZeroError">
+                  比熱は0より大きな値に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">熱伝導率</span>
+                  <input id="ke_enc" type="number"
+                  formControlName="ke"
+                  value="{{default_params.ke_enc | float_format: 1}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon">W/m・℃</span>
+                </div>
+              </div>
+           </div>
+           <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('ke').errors?.required">
+                  熱伝導率は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('ke').errors?.validateInputOverZeroError">
+                  熱伝導率は0より大きな値に設定してください。
+                </div>
+            </div>
+
+           <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">内面放射率</span>
+                  <input id="ein_enc" type="number"
+                  formControlName="e_in"
+                  value="{{default_params.ein_enc | float_format: 2}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon"> </span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('e_in').errors?.required">
+                  内面放射率は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('e_in').errors?.validateInputRatioError">
+                  内面放射率は0以上1以下に設定してください。
+                </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">外面放射率</span>
+                  <input id="eout_enc" type="number"
+                  formControlName="e_out"
+                  value="{{default_params.eout_enc | float_format: 2}}"
+                  pInputText>
+                  <span class="ui-inputgroup-addon"> </span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="input_form_group.invalid && (input_form_group.dirty || input_form_group.touched)"
+                class="alert alert-danger">
+                <div *ngIf="input_form_group.get('params').get('enc').get('e_out').errors?.required">
+                  外面放射率は必須です。
+                </div>
+                <div *ngIf="input_form_group.get('params').get('enc').get('e_out').errors?.validateInputRatioError">
+                  外面放射率は0以上1以下に設定してください。
+                </div>
+            </div>
+
+          </p-accordionTab>
+        </div>
+      </p-accordion>
+  </div>
+</div>
