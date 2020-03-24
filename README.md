@@ -39,30 +39,30 @@
 
 ## ディレクトリ構成
 
-OMWebAppClientNG/
-　　　└src/
-　　　　└app/
-　　　　　├core/: アプリケーションコアモジュール群
-　　　　　│　├services/: 外部サービスアクセスモジュール群
-　　　　　│　└store/: 状態管理モジュール群
-　　　　　│　　　├actions/: Action定義群
-　　　　　│　　　├effects/: Effect定義群
-　　　　　│　　　└reducers/: Reducer定義群
-　　　　　├feature-modules/: 各機能モジュール群
-　　　　　│　　　└enctemp/: 密閉筐体温度計算機能モジュール
-　　　　　│　　　　　├components/: UIコンポーネント定義群
-　　　　　│　　　　　│　　├container/: コンテナコンポーネント定義
-　　　　　│　　　　　│　　├page/: ページ全体のデザイン、レイアウト定義
-　　　　　│　　　　　│　　└presentational/: UIパーツのデザイン、挙動定義
-　　　　　│　　　　　├core/: コアロジック群（主にグラフ描画系）
-　　　　　│　　　　　├services/: 外部サービスアクセスモジュール群
-　　　　　│　　　　　└store/: 状態管理モジュール群
-　　　　　│　　　　　　　├actions/: Action定義群
-　　　　　│　　　　　　　├effects/: Effect定義群
-　　　　　│　　　　　　　└reducers/: Reducer定義群
-　　　　　└shared/: 共有モジュール群
-　　　　　　　├components/: 共有コンポーネント定義
-　　　　　　　├pipes/: 共有Pipe定義
+OMWebAppClientNG/<br/>
+　　　└src/ <br/>
+　　　　└app/ <br/>
+　　　　　├core/: アプリケーションコアモジュール群 <br/>
+　　　　　│　├services/: 外部サービスアクセスモジュール群 <br/>
+　　　　　│　└store/: 状態管理モジュール群 <br/>
+　　　　　│　　　├actions/: Action定義群 <br/>
+　　　　　│　　　├effects/: Effect定義群 <br/>
+　　　　　│　　　└reducers/: Reducer定義群 <br/>
+　　　　　├feature-modules/: 各機能モジュール群 <br/>
+　　　　　│　　　└enctemp/: 密閉筐体温度計算機能モジュール <br/>
+　　　　　│　　　　　├components/: UIコンポーネント定義群 <br/>
+　　　　　│　　　　　│　　├container/: コンテナコンポーネント定義 <br/>
+　　　　　│　　　　　│　　├page/: ページ全体のデザイン、レイアウト定義 <br/>
+　　　　　│　　　　　│　　└presentational/: UIパーツのデザイン、挙動定義 <br/>
+　　　　　│　　　　　├core/: コアロジック群（主にグラフ描画系） <br/>
+　　　　　│　　　　　├services/: 外部サービスアクセスモジュール群 <br/>
+　　　　　│　　　　　└store/: 状態管理モジュール群 <br/>
+　　　　　│　　　　　　　├actions/: Action定義群 <br/>
+　　　　　│　　　　　　　├effects/: Effect定義群 <br/>
+　　　　　│　　　　　　　└reducers/: Reducer定義群 <br/>
+　　　　　└shared/: 共有モジュール群 <br/>
+　　　　　　　├components/: 共有コンポーネント定義 <br/>
+　　　　　　　├pipes/: 共有Pipe定義 <br/>
 　　　　　　　└validators/: 共有Validator定義
 
 ## 作者
